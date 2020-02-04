@@ -1,0 +1,41 @@
+*{
+    padding: 0;margin: 0;
+
+    font-family: sans-serif;
+}
+
+.content{
+    padding: 10%;
+}
+p{
+    padding: 10px 0;
+    line-height: 1.4;
+}
+
+#highlight{
+    padding-bottom: 50px;
+}
+
+.list{
+    float: left;
+    width: 50%;
+}
+.img{
+    float: left;
+    text-align: right;
+    width: 50%;
+}
+.box{
+    padding: 10px 0;
+    float: left;
+}
+#annoying{
+    display: none;
+    color: red;
+    position: sticky;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+    z-index: -99;
+}
