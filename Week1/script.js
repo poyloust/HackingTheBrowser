@@ -57,7 +57,6 @@ window.addEventListener("scroll", function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
        console.log("you're at the bottom of the page");
        clone();
-       //show loading spinner and make fetch request to api
     }
  });
  function clone(){
