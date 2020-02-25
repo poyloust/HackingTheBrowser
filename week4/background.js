@@ -1,3 +1,4 @@
+var timer = 10000;
 console.log("bg script");
 chrome.tabs.onCreated.addListener(function(cb){
     console.log("CREATE TABB");
@@ -14,7 +15,7 @@ chrome.tabs.onCreated.addListener(function(cb){
                         chrome.tabs.remove(id);
                      }
                  });
-            }, ); //settime
+            }, timer); //settime
         }
     });
 });
