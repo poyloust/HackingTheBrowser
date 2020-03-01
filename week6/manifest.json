@@ -14,7 +14,8 @@
     },
     "permissions":[
         "tabs",
-        "bookmarks"
+        "bookmarks",
+        "alarms"
     ],
 
     "background":{
