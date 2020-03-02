@@ -9,7 +9,6 @@ create bookmark root folder for extension
 chrome.bookmarks.search({
         'title':'Saved for TabOD'
     },function(matchingFolder){
-    //console.log(matchingFolder);
     if(matchingFolder.length == 0){
         chrome.bookmarks.create({
             'title':'Saved for TabOD'
@@ -21,6 +20,7 @@ chrome.bookmarks.search({
         tabodId = matchingFolder[0].id;
         console.log("folder already exists, id is " +tabodId);
     }
+    addBadge();
 });
 
 /*
@@ -87,7 +87,22 @@ function createDailyFolder(){
         }
     });
 }
+
+chrome.browserAction.onClicked.addListener(function(){
+    console.log("clicked");
+    chrome.tabs.create({
+        'url':"chrome://newtab/"
+    })
+});
+function addBadge(){
+    chrome.bookmarks.getSubTree(tabodId,function(results){
+        var dateCount = results[0].children.length.toString(); // get childrens in object array
+        console.log(dateCount); 
+        chrome.browserAction.setBadgeText({text: dateCount}); 
+    });
+
+
+}
 // TO DO
 
-//clear all alarm on closing the tab
 //cssssss

@@ -9,8 +9,7 @@
     },
 
     "browser_action":{
-        "default_title":"TaaaaabOD",
-        "default_popup":"popup.html"
+        "default_title":"TaaaaabOD"
     },
     "permissions":[
         "tabs",
