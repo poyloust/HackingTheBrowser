@@ -5,35 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
     <style>
-        *{margin:0; padding: 0; list-style: none;}
+        *{margin:0; padding: 0; list-style: none;text-decoration: none;}
+        body{
+            
+        }
         #bookmarks ul{
             float: left;
-            width: 500px;
-            height: 800px;
-            margin: 10px 10px;
-            background-color: bisque;
-            overflow:scroll;
-            font-size: 22px;
-            font-weight: 600;
-        }
-        li {
             width: 400px;
-            font-size: 18px;
-            font-weight: 200;
+            height: 650px;
+            border-radius: 25px;
+            margin: 0 25px 60px 0;
+            background-color:#fff;
+            box-shadow: 0 0 18px 5px rgba(189, 189, 189, 0.14);
+            overflow:scroll;
         }
-        button{
-            width:40px;
-            height: 40px;
+        .title{
+            font-size: 24px;
+            font-weight: 700;
+            border-bottom: solid 1px #f5f5f5;
+            padding:35px 35px;
+            margin-bottom: 30px;
+        }
+        li{
+            
+            color: #919191;
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 6px;
+            border: 1px solid #f5f5f5;
+            margin: 6px 35px;
+            padding: 23px 0px 23px 40px;
+        }
+        li:hover{
+            box-shadow: 0 0 18px 2px rgba(189, 189, 189, 0.15);
+        }
+        .openBtn{
+            width:90px;
+            height: 35px;
+            position: relative;
+            top:-96px;
+            right: 40px;
+            float: right;
+            background-color: #fff;
+            border-radius: 6px;
+            border: 1px solid #f5f5f5;
+
+            font-weight: 400;
+        }
+        .openBtn:hover{
+            font-weight: 600;
+            box-shadow: 0 0 18px 2px rgba(189, 189, 189, 0.08);
+            cursor:pointer;
+        }
+        
+        .deleteBtn{
+            font-size: 1px;
+            background-color:rgba(226, 0, 8, 0.824);;
+            width: 13px;
+            height: 13px;
+            border-radius: 40px;
+            border: none;
+            float: right;
+            position: relative;
+            top: -120px;
+            right: -80px;
+            transition: 0.6s ease-in;
+            color:white;
+        }
+        .deleteBtn:hover{
+            font-size: 10px;
+            color:white;
+            width: 46px;
+            height: 46px;
+            top: -140px;
+            right: -100px;
+            background-color:red;
+            box-shadow: 0 0 18px 12px rgba(189, 189, 189, 0.2);
         }
 
+        .wrapper{
+            background-color: #FCFCFC;
+            padding: 105px 150px;
+        }
+        h1{
+            font-size:36px;
+            padding-bottom: 20px;
+            margin-bottom:55px;
+        }
     </style>
     <!-- <script src="test.js"></script> -->
 </head>
 <body>
-    <h1>hello, override page</h1>
-    <div>
-        <ul id="bookmarks"></ul>
+    <div class="wrapper">
+        <h1>Let's go back to where you left off... </h1>
+        <div>
+            <ul id="bookmarks"></ul>
+        </div>
+        <script src="welcome.js"></script>
     </div>
-    <script src="welcome.js"></script>
 </body>
 </html>

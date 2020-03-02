@@ -29,7 +29,7 @@ function folderToLists(folders){
 
         //create lists for different date folder
         dateList[i] = document.createElement("ul");
-        dateList[i].innerHTML = folders[i].title;
+        dateList[i].innerHTML = "<div class = \"title\">"+folders[i].title+"</div";
         var _boxId = document.createAttribute('id');
         _boxId.value = boxId.toString();
         dateList[i].setAttributeNode(_boxId);
@@ -54,12 +54,13 @@ function folderToLists(folders){
 
 function createButtons(i){
     var buttonOpen = document.createElement('button');
-        buttonOpen.innerText = "open all";
+        buttonOpen.innerText = "OPEN ALL";
         dateList[i].appendChild(buttonOpen);
         buttonOpen.setAttribute('id',"btn"+i.toString());
+        buttonOpen.setAttribute('class',"openBtn");
         
     var buttonDelete = document.createElement('button');
-        buttonDelete.innerHTML = "x";
+        buttonDelete.innerHTML = "×";
         dateList[i].appendChild(buttonDelete);
         buttonDelete.setAttribute('class',"deleteBtn");
         buttonDelete.setAttribute('id',"del"+i.toString());
