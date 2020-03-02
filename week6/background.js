@@ -27,19 +27,13 @@ chrome.bookmarks.search({
 timing the tab opening time 
 */
 
-var delayInMinutes = 1;
-
 // no need for onCreated listener,  
 // or the event will be fired multiple times
 
 var list = {};
 chrome.tabs.onUpdated.addListener(function(id,info,tab){
-
-
     if(tab.url != undefined && info.status == "complete" && tab.status == "complete"){ 
-        console.log(id+tab.title);
-        // console.log(tab);
-        //setNewTimer(id,url,title);
+        console.log(id+tab.title+tab.url);
         var listNum = parseInt(id);
         clearTimeout(list[listNum]);
         list[listNum] = setTimeout(function(){
@@ -47,26 +41,13 @@ chrome.tabs.onUpdated.addListener(function(id,info,tab){
             var title = tab.title;
             var url = tab.url;        
             console.log("settimeout");
-            addBookmark(url,title);
+            if(url != "chrome://newtab/"){
+                addBookmark(url,title);
+            }
         },10000);
     }
+    //--todo---clear time out on tab close
 });
-
-function setNewTimer(_id,_url,_title){
- 
-    chrome.alarms.create(_id.toString(),{
-        delayInMinutes
-    });
-    var t1 = new Date().toISOString();
-    console.log(t1 + _id + _url +" set an alarm for "+delayInMinutes+"mins");
-    chrome.alarms.onAlarm.addListener(function(){ 
-        var ct =  new Date().toISOString();
-        console.log(ct+"alarm");
-        addBookmark(_url,_title);
-        chrome.alarms.clear(_id.toString());
-    });
-} 
-
 
 function addBookmark(url,title){
     createDailyFolder();
@@ -104,8 +85,6 @@ function createDailyFolder(){
 }
 // TO DO
 
-//get time
-//rename folder
 //clear all alarm on closing the tab
 //pop up html
 //landing page html
