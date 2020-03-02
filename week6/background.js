@@ -46,7 +46,11 @@ chrome.tabs.onUpdated.addListener(function(id,info,tab){
             }
         },10000);
     }
-    //--todo---clear time out on tab close
+    //delete timeout on remove tab
+    chrome.tabs.onRemoved.addListener(function(id){
+        var _listNum = parseInt(id);
+        clearTimeout(list[_listNum]);
+    })
 });
 
 function addBookmark(url,title){
