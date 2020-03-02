@@ -86,5 +86,4 @@ function createDailyFolder(){
 // TO DO
 
 //clear all alarm on closing the tab
-//pop up html
-//landing page html
+//cssssss

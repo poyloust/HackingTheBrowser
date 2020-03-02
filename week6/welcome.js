@@ -4,6 +4,7 @@ var dateList = [];
 var folderCounts;
 var linkStorage = {};
 var buttons = {};
+var deleteBtn = {};
 var targetId;
 
 chrome.bookmarks.search({
@@ -20,18 +21,21 @@ chrome.bookmarks.search({
 
 function folderToLists(folders){
     for(var i = 0; i<folders.length; i++){
-        dateList[i] = document.createElement("ul");
-        dateList[i].innerHTML = folders[i].title;
-        lists.appendChild(dateList[i]);
 
-        var buttonOpen = document.createElement('button');
-        buttonOpen.innerText = "open all";
-        dateList[i].appendChild(buttonOpen);
-        buttonOpen.setAttribute('id',"btn"+i.toString());
         var links = folders[i].children;
-
+        var boxId = folders[i].id;
         var name = i.toString();
         linkStorage[name] = [];
+
+        //create lists for different date folder
+        dateList[i] = document.createElement("ul");
+        dateList[i].innerHTML = folders[i].title;
+        var _boxId = document.createAttribute('id');
+        _boxId.value = boxId.toString();
+        dateList[i].setAttributeNode(_boxId);
+        lists.appendChild(dateList[i]);
+
+        createButtons(i);
 
         for(var j = 0; j<links.length; j++){
             var l = document.createElement('a');
@@ -43,8 +47,22 @@ function folderToLists(folders){
             dateList[i].appendChild(l);
         }
     }
+
     console.log(linkStorage);
     addButtonListener();
+}
+
+function createButtons(i){
+    var buttonOpen = document.createElement('button');
+        buttonOpen.innerText = "open all";
+        dateList[i].appendChild(buttonOpen);
+        buttonOpen.setAttribute('id',"btn"+i.toString());
+        
+    var buttonDelete = document.createElement('button');
+        buttonDelete.innerHTML = "x";
+        dateList[i].appendChild(buttonDelete);
+        buttonDelete.setAttribute('class',"deleteBtn");
+        buttonDelete.setAttribute('id',"del"+i.toString());
 }
 
 function addButtonListener(){
@@ -52,20 +70,27 @@ function addButtonListener(){
         buttons[i] = document.getElementById("btn"+i.toString());
         buttons[i].index =i;
         buttons[i].addEventListener("click", openAllPage);
+
+        deleteBtn[i] = document.getElementById("del"+i.toString());
+        deleteBtn[i].index =i;
+        deleteBtn[i].addEventListener("click", deleteBox);
     }
-    console.log(buttons);
+    console.log(deleteBtn);
       
 }
 function openAllPage(){
-    var n = linkStorage[this.index];
-    console.log(n);
+    //get links for certain day
+    var n = linkStorage[this.index]; 
     for(var i = 0; i<n.length; i++){
         chrome.tabs.create({
             'url': n[i].toString()
         });
     }
 }
-
+function deleteBox(){
+    chrome.bookmarks.removeTree(this.parentNode.id);
+    this.parentNode.remove();
+}
 function test(){
     console.log("test"+ this.index);
 }
