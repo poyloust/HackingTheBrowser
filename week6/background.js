@@ -32,19 +32,28 @@ var delayInMinutes = 1;
 // no need for onCreated listener,  
 // or the event will be fired multiple times
 
+var list = {};
 chrome.tabs.onUpdated.addListener(function(id,info,tab){
-    console.log(tab);
-    var title = tab.title;
-    var url = tab.url;
 
-    if(url != undefined && info.status == "complete" && tab.status == "complete"){ 
-        console.log(id+ ",\"" +url+"\","+title);
-        console.log(tab);
-        setNewTimer(id,url,title);
+
+    if(tab.url != undefined && info.status == "complete" && tab.status == "complete"){ 
+        console.log(id+tab.title);
+        // console.log(tab);
+        //setNewTimer(id,url,title);
+        var listNum = parseInt(id);
+        clearTimeout(list[listNum]);
+        list[listNum] = setTimeout(function(){
+            console.log(list[listNum]);
+            var title = tab.title;
+            var url = tab.url;        
+            console.log("settimeout");
+            addBookmark(url,title);
+        },10000);
     }
 });
 
 function setNewTimer(_id,_url,_title){
+ 
     chrome.alarms.create(_id.toString(),{
         delayInMinutes
     });
