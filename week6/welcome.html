@@ -6,29 +6,34 @@
     <title>Welcome Page</title>
     <style>
         *{margin:0; padding: 0; list-style: none;}
-        li{
+        #bookmarks ul{
             float: left;
             width: 500px;
             height: 800px;
             margin: 10px 10px;
             background-color: bisque;
             overflow:scroll;
+            font-size: 22px;
+            font-weight: 600;
         }
-        li a {
+        li {
             width: 400px;
-            float: left;
+            font-size: 18px;
+            font-weight: 200;
+        }
+        button{
+            width:40px;
+            height: 40px;
         }
 
     </style>
+    <!-- <script src="test.js"></script> -->
 </head>
 <body>
     <h1>hello, override page</h1>
     <div>
         <ul id="bookmarks"></ul>
     </div>
-
-
-
     <script src="welcome.js"></script>
 </body>
 </html>
