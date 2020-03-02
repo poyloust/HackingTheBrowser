@@ -22,12 +22,12 @@ function folderToLists(folders){
         var links = folders[i].children;
         console.log(links);
         for(var j = 0; j<links.length; j++){
-            var url = document.createElement('a');
-            // var href = document.createAttribute('href');
-            // href.value = links[j].url.toString();
-            url.innerHTML = links[j].title.toString();
-            // url.setAttributeNode(href);
-            date[i].appendChild(url);
+            var l = document.createElement('a');
+            var href = document.createAttribute('href');
+            href.value = links[j].url.toString();
+            l.innerHTML = links[j].title.toString();
+            l.setAttributeNode(href);
+            date[i].appendChild(l);
         }
     }
 }

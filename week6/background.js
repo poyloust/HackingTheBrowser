@@ -41,7 +41,7 @@ chrome.tabs.onUpdated.addListener(function(id,info,tab){
             var title = tab.title;
             var url = tab.url;        
             console.log("settimeout");
-            if(url != "chrome://newtab/"){
+            if(url.indexOf("chrome://")<0){
                 addBookmark(url,title);
             }
         },10000);
