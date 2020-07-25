@@ -29,6 +29,7 @@ function folderToLists(folders){
 
         //create lists for different date folder
         dateList[i] = document.createElement("ul");
+        // set title inside widgets
         dateList[i].innerHTML = "<div class = \"title\">"+folders[i].title+"</div";
         var _boxId = document.createAttribute('id');
         _boxId.value = boxId.toString();
@@ -40,10 +41,13 @@ function folderToLists(folders){
         for(var j = 0; j<links.length; j++){
             var l = document.createElement('a');
             var href = document.createAttribute('href');
+            var iconLink = (new URL(links[j].url)).hostname + "/favicon.ico";
+
             href.value = links[j].url.toString();
-            linkStorage[i].push(links[j].url);
-            l.innerHTML = "<li>"+links[j].title.toString()+"</li>";
+            linkStorage[i].push(links[j].url); //for opening all links later
+            l.innerHTML = "<li>" +"<img alt=\"\" src=\"http://" +iconLink+ "\">" +"<div class=\"itemTitle\">" +links[j].title.toString()+"</div></li>";
             l.setAttributeNode(href);
+            l.setAttribute('class',"widgetItem");
             dateList[i].appendChild(l);
         }
     }

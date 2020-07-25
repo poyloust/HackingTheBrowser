@@ -44,7 +44,7 @@ chrome.tabs.onUpdated.addListener(function(id,info,tab){
             if(url.indexOf("chrome://")<0){
                 addBookmark(url,title);
             }
-        },10000);
+        },1000*7200);//2h
     }
     //delete timeout on remove tab
     chrome.tabs.onRemoved.addListener(function(id){
@@ -77,9 +77,8 @@ function createDailyFolder(){
                 'title':dateFolder
             },function(dFolder){
                 dailyFolderId = dFolder.id;
-
-            console.log("add " + dFolder.title);
-            console.log("id is " + dailyFolderId);
+                console.log("add " + dFolder.title);
+                console.log("id is " + dailyFolderId);
             });
         }
         else{

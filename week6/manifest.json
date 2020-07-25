@@ -13,8 +13,7 @@
     },
     "permissions":[
         "tabs",
-        "bookmarks",
-        "alarms"
+        "bookmarks"
     ],
 
     "background":{
