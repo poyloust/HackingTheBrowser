@@ -34,7 +34,7 @@ function folderToLists(folders){
         var _boxId = document.createAttribute('id');
         _boxId.value = boxId.toString();
         dateList[i].setAttributeNode(_boxId);
-        lists.appendChild(dateList[i]);
+        lists.prepend(dateList[i]);
 
         createButtons(i);
 
@@ -59,13 +59,14 @@ function folderToLists(folders){
 function createButtons(i){
     var buttonOpen = document.createElement('button');
         buttonOpen.innerText = "OPEN ALL";
-        dateList[i].appendChild(buttonOpen);
+
+        dateList[i].firstChild.appendChild(buttonOpen);
         buttonOpen.setAttribute('id',"btn"+i.toString());
         buttonOpen.setAttribute('class',"openBtn");
         
     var buttonDelete = document.createElement('button');
         buttonDelete.innerHTML = "×";
-        dateList[i].appendChild(buttonDelete);
+        dateList[i].firstChild.appendChild(buttonDelete);
         buttonDelete.setAttribute('class',"deleteBtn");
         buttonDelete.setAttribute('id',"del"+i.toString());
 }
@@ -93,8 +94,8 @@ function openAllPage(){
     }
 }
 function deleteBox(){
-    chrome.bookmarks.removeTree(this.parentNode.id);
-    this.parentNode.remove();
+    chrome.bookmarks.removeTree(this.parentNode.parentNode.id);
+    this.parentNode.parentNode.remove();
 }
 function test(){
     console.log("test"+ this.index);
