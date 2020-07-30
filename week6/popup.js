@@ -1,21 +1,20 @@
 console.log("popup.js");
-getSettings();
+
 
 var userSelect = document.getElementById("userSelect");
 var timerValue;
-var oldTimer = document.getElementById('3600000');
+var oldTimer;
 var newTimer;
 
 var stopBtn = document.getElementById('stop');
 var resBtn = document.getElementById('resume');
 var switchOn;
 
-oldTimer.selected = true;
-
+getSettings();
 
 // get the form value 
 // then pass it to bg.js
-
+console.log(userSelect);
 userSelect.onchange = function(){
     timerValue = userSelect.value;
     // console.log("user selected time:" +timerValue);
@@ -27,6 +26,7 @@ userSelect.onchange = function(){
 }
 
 function changeSelectedOption(val){
+    console.log(oldTimer);
     oldTimer.selected = false;
     newTimer = document.getElementById(val.toString());
     console.log(newTimer);
@@ -35,12 +35,13 @@ function changeSelectedOption(val){
 }
 
 function getSettings(){
-    
     chrome.runtime.getBackgroundPage(function(bg){
         timerValue = bg.timingWindow;
         switchOn = bg.masterControl;
+        console.log('GET SETTINGS, timer:'+ timerValue + "switch" +switchOn);
+        oldTimer = document.getElementById(timerValue.toString());
+        oldTimer.selected = true;
     });
-    console.log('GET SETTINGS, timer:'+ timerValue + "switch" +switchOn);
 }
 
 stopBtn.onclick = function(){

@@ -3,7 +3,7 @@ console.log("background js running");
 var tabodId;
 var dailyFolderId;
 var dateFolder;
-var timingWindow = 1000*5;
+var timingWindow = 43200000;
 var masterControl = false;
 /*
 create bookmark root folder for extension
