@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabOD Popup Window</title>
+    <style>
+        *{
+            text-decoration: none;
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 200;
+            font-size: 16px;
+        }
+        body{
+            width: 280px;
+            height: 280px;
+            /* background-color: rgb(84, 84, 84); */
+        }
+        .logo{
+            width: 100%;
+            height: 37px;
+        }
+        .logo img{
+            position: absolute;
+            width: 85%;
+            top: -30px;
+            right: 87px;
+            z-index: 0;
+        }
+        .content{
+            width: 100%;
+            background-color: #fafafa;
+            border-radius: 16px;
+            z-index: 20;
+            margin-bottom: 3px;
+            /* box-shadow: 2px -2px 50px #a0a0a056 ; */
+        }
+
+        .counter{
+            margin-top: 5px;
+            padding: 20px 30px;
+        }
+        .counter span{
+            color: #4FB28D;
+            font-weight: 400;
+        }
+
+        .settings{
+            background-color: #fff;
+            padding: 10px 30px;
+        }
+        .settings form{
+            padding: 10px 0 0px 0;
+        }
+        #userSelect{    
+            padding: 4px 0 4px 7px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+            font-weight: 300;
+        }
+
+        .control{
+
+        }
+        .control div{
+            padding: 15px 0;
+            padding-left: 30px;
+            border-bottom: 1px solid #ededed;
+            cursor: pointer;
+        }
+        .stop{
+            font-weight: 400;
+            color: #9E1F1F;
+        }
+        .resume{
+            font-weight: 400;
+            color: #4FB28D;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"><img src="imgs/logo.png"></div>
+    <div class="content">
+        <div class="counter">
+            <span>1234 </span> tabs auto-saved for you!
+        </div>
+
+        <div class="settings">
+            <h2>Set time for auto-save</h2>
+            <form>
+                <select id="userSelect">
+                    <option value="5000" id="5000">5 seconds</option>
+                    <option value="900000" id="900000">15 minutes</option>
+                    <option value="3600000" id="3600000">1 hour</option>
+                    <option value="10800000" id="10800000">3 hours</option>
+                    <option value="43200000" id="43200000">12 hours</option>
+                </select>
+            </form>
+        </div>
+        
+        <div class="control">
+            <div id="stop"><span class="stop">Stop</span> auto-saving tabs</div>
+            <div id="resume"><span class="resume">Resume</span> auto-saving tabs</div>
+        </div>
+    </div>
+    
+
+    <script src="popup.js"></script>
+</body>
+</html>

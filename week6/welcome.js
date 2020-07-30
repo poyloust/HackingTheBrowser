@@ -80,10 +80,9 @@ function addButtonListener(){
         deleteBtn[i] = document.getElementById("del"+i.toString());
         deleteBtn[i].index =i;
         deleteBtn[i].addEventListener("click", deleteBox);
-    }
-    console.log(deleteBtn);
-      
+    }      
 }
+
 function openAllPage(){
     //get links for certain day
     var n = linkStorage[this.index]; 

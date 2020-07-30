@@ -3,6 +3,8 @@ console.log("background js running");
 var tabodId;
 var dailyFolderId;
 var dateFolder;
+var timingWindow = 1000*5;
+var masterControl = false;
 /*
 create bookmark root folder for extension
 */
@@ -31,26 +33,37 @@ timing the tab opening time
 // or the event will be fired multiple times
 
 var list = {};
+
+
 chrome.tabs.onUpdated.addListener(function(id,info,tab){
-    if(tab.url != undefined && info.status == "complete" && tab.status == "complete"){ 
-        console.log(id+tab.title+tab.url);
-        var listNum = parseInt(id);
-        clearTimeout(list[listNum]);
-        list[listNum] = setTimeout(function(){
-            console.log(list[listNum]);
-            var title = tab.title;
-            var url = tab.url;        
-            console.log("settimeout");
-            if(url.indexOf("chrome://")<0){
-                addBookmark(url,title);
-            }
-        },1000*7200);//2h
+    // console.log("the timer on bg is:::" + timingWindow);
+    console.log("the switch status is:::" + masterControl);
+
+    if(masterControl){
+
+        if(tab.url != undefined && info.status == "complete" && tab.status == "complete"){ 
+            console.log(id+tab.title+tab.url);
+            var listNum = parseInt(id);
+            clearTimeout(list[listNum]);
+            list[listNum] = setTimeout(function(){
+                console.log(list[listNum]);
+                var title = tab.title;
+                var url = tab.url;        
+                console.log("settimeout");
+                if(url.indexOf("chrome://")<0){
+                    addBookmark(url,title);
+                }
+            },timingWindow);
+        }
+        //delete timeout on remove tab
+        chrome.tabs.onRemoved.addListener(function(id){
+            var _listNum = parseInt(id);
+            clearTimeout(list[_listNum]);
+        })
     }
-    //delete timeout on remove tab
-    chrome.tabs.onRemoved.addListener(function(id){
-        var _listNum = parseInt(id);
-        clearTimeout(list[_listNum]);
-    })
+    else{
+        console.log("turned off");
+    }
 });
 
 function addBookmark(url,title){
@@ -93,6 +106,7 @@ chrome.browserAction.onClicked.addListener(function(){
         'url':"chrome://newtab/"
     })
 });
+
 function addBadge(){
     chrome.bookmarks.getSubTree(tabodId,function(results){
         var dateCount = results[0].children.length.toString(); // get childrens in object array
