@@ -16,7 +16,6 @@
         body{
             width: 280px;
             height: 280px;
-            /* background-color: rgb(84, 84, 84); */
         }
         .logo{
             width: 100%;
@@ -41,6 +40,10 @@
         .counter{
             margin-top: 5px;
             padding: 20px 30px;
+            font-size: 14px;
+            font-weight: 400;
+            font-style: italic;
+            color: #2f946f;
         }
         .counter span{
             color: #4FB28D;
@@ -62,9 +65,6 @@
             font-weight: 300;
         }
 
-        .control{
-
-        }
         .control div{
             padding: 15px 0;
             padding-left: 30px;
@@ -83,10 +83,10 @@
 
 </head>
 <body>
-    <div class="logo"><img src="imgs/logo.png"></div>
+    <div class="logo"><a href="chrome-extension://welcome.html/#" target="_blank"><img src="imgs/logo.png"></a></div>
     <div class="content">
         <div class="counter">
-            <span>1234 </span> tabs auto-saved for you!
+            <span></span>  Save you from the tabs clutter!
         </div>
 
         <div class="settings">

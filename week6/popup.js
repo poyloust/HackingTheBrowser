@@ -17,7 +17,6 @@ getSettings();
 console.log(userSelect);
 userSelect.onchange = function(){
     timerValue = userSelect.value;
-    // console.log("user selected time:" +timerValue);
     chrome.runtime.getBackgroundPage(function(bgPage){
         bgPage.timingWindow = timerValue;
         console.log("timer on bg.js is set to:" + bgPage.timingWindow);

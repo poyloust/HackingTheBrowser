@@ -22,7 +22,7 @@ chrome.bookmarks.search({
         tabodId = matchingFolder[0].id;
         console.log("folder already exists, id is " +tabodId);
     }
-    addBadge();
+    // addBadge();
 });
 
 /*
@@ -36,13 +36,11 @@ var list = {};
 
 
 chrome.tabs.onUpdated.addListener(function(id,info,tab){
-    // console.log("the timer on bg is:::" + timingWindow);
-    console.log("the switch status is:::" + masterControl);
 
     if(masterControl){
 
         if(tab.url != undefined && info.status == "complete" && tab.status == "complete"){ 
-            console.log(id+tab.title+tab.url);
+            console.log(id+tab.title + tab.url);
             var listNum = parseInt(id);
             clearTimeout(list[listNum]);
             list[listNum] = setTimeout(function(){
@@ -116,6 +114,3 @@ function addBadge(){
 
 
 }
-// TO DO
-
-//cssssss
